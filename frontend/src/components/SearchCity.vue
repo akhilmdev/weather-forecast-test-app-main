@@ -12,7 +12,7 @@
     <!-- Done added click event to m -->
     <GMapMap
       v-if="selectedPlace"
-      class="gmap-class"
+      class="gmap-class px-2"
       :center="selectedPlace"
       :zoom="7"
       map-type-id="roadmap"
@@ -77,7 +77,7 @@ a {
 @tailwind components;
 @layer components {
   .pac-target-input {
-    @apply w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-primary-100 focus:border-primary-300;
+    @apply w-64 px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-primary-100 focus:border-primary-300;
   }
 }
 </style>
