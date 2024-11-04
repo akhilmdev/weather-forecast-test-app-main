@@ -10,12 +10,19 @@ export default class WindService implements windInterface {
 
   /**
    * Determines the wind direction based on the given degree.
-   * @param degree - The degree of the wind direction (0 to 360).
+   * @param degrees - The degree of the wind direction (0 to 360).
    * @returns The cardinal direction as a string (e.g., 'N', 'NE', 'E').
    */
-  getWindDirection(degree: number): string {
+  getWindDirection(degrees: number): string {
+    // Normalize the degrees to be within 0-360 range
+    const normalizedDegrees = ((degrees % 360) + 360) % 360;
+
+    // Array of compass directions in order
     const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
-    const index = Math.round(degree / 45) % 8;
+
+    // Calculate the index by dividing degrees by 45 (since 360°/8 directions = 45°)
+    const index = Math.round(normalizedDegrees / 45) % 8;
+
     return directions[index];
   }
 
@@ -25,6 +32,7 @@ export default class WindService implements windInterface {
    * @returns A string representing the wind condition, such as 'Calm', 'Light Breeze', 'Moderate Breeze', etc.
    */
   getWindCondition(windSpeed: number): keyof typeof ICON_MAPPER {
+    if (windSpeed < 0) return "Unknown";
     const conditions: {
       maxSpeed: number;
       condition: keyof typeof ICON_MAPPER;
