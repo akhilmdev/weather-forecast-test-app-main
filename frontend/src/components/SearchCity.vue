@@ -1,17 +1,23 @@
 <template>
   <div>
     <h3>Type a city name to search</h3>
-    <GMapAutocomplete @place_changed="placeChanged" class="gmap-autocompolete"/>
+    <GMapAutocomplete
+      @place_changed="placeChanged"
+      class="gmap-autocompolete"
+    />
 
-    <div>You can also click a location on the map to view the weather forecast</div>
-    <!-- TODO add click event -->
+    <div>
+      You can also click a location on the map to view the weather forecast
+    </div>
+    <!-- Done added click event to m -->
     <GMapMap
       v-if="selectedPlace"
-      class="gmap-class"
+      class="gmap-class px-2"
       :center="selectedPlace"
       :zoom="7"
       map-type-id="roadmap"
       ref="gmap"
+      @click="handleMapClick"
     >
     </GMapMap>
   </div>
@@ -71,7 +77,7 @@ a {
 @tailwind components;
 @layer components {
   .pac-target-input {
-    @apply w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-primary-100 focus:border-primary-300;
+    @apply w-64 px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-primary-100 focus:border-primary-300;
   }
 }
 </style>
